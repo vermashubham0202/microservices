@@ -14,6 +14,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/*
+@MappedSuperclass in JPA is used to define a base class with common mappings
+that can be inherited by entity classes but is not itself an entity.
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter @ToString
@@ -27,6 +31,7 @@ public class BaseEntity {
     @Column(updatable = false)
     private String createdBy;
 
+    // insertable = false: don't insert this column when saving new record for the first time
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime updatedAt;
